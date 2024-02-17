@@ -17,10 +17,10 @@ body::before {
     right: 0;
     bottom: 0;
     z-index: -1;
-    backdrop-filter: blur(5px);
+
 }
 
-.overlay {
+.overlay_visible {
     position: fixed;
     top: 0;
     left: 0;
@@ -30,11 +30,20 @@ body::before {
     z-index: 1;
     opacity: 1;
     user-select: none;
+    backdrop-filter: blur(5px);
+    transition: opacity 0.20s linear;
 }
 
 .slider {
     opacity: 1;
-    transition: opacity 0.5s ease;
+    visibility: visible;
+    transition: opacity 0.20s linear;
+    z-index: 10;
+}
+
+.slider_hidden {
+    opacity: 0;
+    visibility: hidden;
 }
 
 #img_container {
@@ -62,20 +71,18 @@ body::before {
     height: 56vmin;
 }
 
-
 .image-container {
     position: relative;
     display: inline-block;
 }
 
-
 .fullscreen {
     position: absolute;
     bottom: 20px;
     right: 20px;
+    transform: scale(0);
     opacity: 0;
-    visibility: hidden;
-    transition: opacity 1.5s ease;
+    transition: transform 0.5s ease, opacity 0.5s ease;
 }
 
 .fullscreen>i {
@@ -84,8 +91,9 @@ body::before {
 }
 
 .fullscreen-visible {
+    transform: scale(1);
     opacity: 1;
-    visibility: visible;
+    transition: transform 0.5s ease, opacity 0.5s ease;
 }
 
 .exit-fullscreen {
@@ -93,11 +101,19 @@ body::before {
     bottom: 20px;
     right: 20px;
     opacity: 0;
+    visibility: hidden;
     z-index: 10;
+    transform: scale(0);
 }
 
 .exit-fullscreen i {
     font-size: 3rem;
     color: whitesmoke;
-    transition: opacity 1.5s ease;
+}
+
+.exit-fullscreen_visible {
+    transform: scale(1);
+    opacity: 1;
+    visibility: visible;
+    transition: transform 0.5s ease, opacity 0.5s ease;
 }

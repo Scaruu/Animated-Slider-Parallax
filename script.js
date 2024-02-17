@@ -75,7 +75,7 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 });
 
-/* GESTION IMAGE BG */
+/* Gestion image BG onlick */
 document.addEventListener("DOMContentLoaded", () => {
   const imgContainer = document.querySelector("#img_container");
   imgContainer.addEventListener("click", function (event) {
@@ -105,4 +105,29 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 });
 
-/* CLIC SUR ICON FULL SCREEN */
+/* Gestion fullscreen */
+document.addEventListener("DOMContentLoaded", () => {
+  document.querySelectorAll(".fullscreen").forEach((fullscreenIcon) => {
+    fullscreenIcon.addEventListener("click", () => {
+      document
+        .querySelector(".exit-fullscreen")
+        .classList.add("exit-fullscreen_visible");
+      document.querySelector(".overlay").classList.remove("overlay_visible");
+      document.querySelector(".slider").classList.add("slider_hidden");
+
+      fullscreenIcon.classList.remove("fullscreen-visible");
+
+      document.querySelectorAll(".image").forEach((image) => {
+        image.classList.remove("image-enlarged");
+      });
+    });
+  });
+
+  document.querySelector(".exit-fullscreen").addEventListener("click", () => {
+    document.querySelector(".overlay").classList.add("overlay_visible");
+    document.querySelector(".slider").classList.remove("slider_hidden");
+    document
+      .querySelector(".exit-fullscreen")
+      .classList.remove("exit-fullscreen_visible");
+  });
+});
